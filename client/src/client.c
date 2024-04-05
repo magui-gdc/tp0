@@ -56,7 +56,7 @@ int main(void)
 	logger = iniciar_logger();
 	leer_consola(logger);
 	logger = log_create("tp0.log", "TP0", true, LOG_LEVEL_INFO);
-	log_info(logger," leido.");
+	log_info(logger,"/t ...leido.");
 	log_destroy(logger);
 
 	/*---------------------------------------------------PARTE 3-------------------------------------------------------------*/
@@ -95,14 +95,18 @@ void leer_consola(t_log* logger)
 {
 	char* leido;
 
-	// La primera te la dejo de yapa
-	leido = readline("> ");
-
-	// El resto, las vamos leyendo y logueando hasta recibir un string vacío
-
-
-	// ¡No te olvides de liberar las lineas antes de regresar!
-
+	while(true){
+		// La primera te la dejo de yapa
+		leido = readline("> ");
+		// El resto, las vamos leyendo y logueando hasta recibir un string vacío
+		if(!strcmp(leido, "")){
+			free(leido);
+			break;
+		}
+		log_info(logger,leido);
+		// ¡No te olvides de liberar las lineas antes de regresar!
+		free(leido);
+	}	
 }
 
 void paquete(int conexion)
