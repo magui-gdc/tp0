@@ -56,7 +56,7 @@ int main(void)
 	logger = iniciar_logger();
 	leer_consola(logger);
 	logger = log_create("tp0.log", "TP0", true, LOG_LEVEL_INFO);
-	log_info(logger,"/t ...leido.");
+	log_info(logger,"Termino la lectura.");
 	log_destroy(logger);
 
 	/*---------------------------------------------------PARTE 3-------------------------------------------------------------*/
@@ -66,7 +66,10 @@ int main(void)
 	// Creamos una conexión hacia el servidor
 	conexion = crear_conexion(ip, puerto);
 
+	err = connect(fd_conexion, server_info->ai_addr, server_info->ai_addrlen);
+
 	// Enviamos al servidor el valor de CLAVE como mensaje
+	
 
 	// Armamos y enviamos el paquete
 	paquete(conexion);
